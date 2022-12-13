@@ -30,17 +30,19 @@ document.addEventListener("DOMContentLoaded", ()=>{
             imagen: "monitor.jpg",
             tipo: "monitor",
             especificaciones: {
-                resolucion: "1080p"
+                resolucion: "1080p",
+                pulgadas: "49"
             }
         },
         {
             id: 4,
-            nombre: "Silla",
+            nombre: "Monitor",
             precio: 230,
             imagen: "monitor.jpg",
             tipo: "monitor",
             especificaciones: {
-                resolucion: "1080p"
+                resolucion: "1080p",
+                pulgadas: "27"
             }
         }
         
