@@ -3,7 +3,6 @@ const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
 const port = process.env.port || 3000;
-//Hola Andrés
 const ventaRoutes = require("./routes/venta.routes") 
 const userRoutes = require("./routes/user.routes")
 const version = "v1"
