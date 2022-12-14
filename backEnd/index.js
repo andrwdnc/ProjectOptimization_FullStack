@@ -19,6 +19,7 @@ app.use(express.json())
 //Insertar rutas
 app.use(`/api/${version}/venta`, ventaRoutes) 
 app.use(`/api/${version}/users`, userRoutes)
+app.use(`/api/${version}/product`, productRoutes)
 
 
 //Levantar servidor
