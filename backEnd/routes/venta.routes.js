@@ -1,7 +1,7 @@
-import { getAllProducts } from "../controllers/venta.controller";
+const ventaController = require("../controllers/venta.controllers")
 const express = require("express")
 const router = express.Router()
 
-router.get("/ventas",getAllProducts)
+router.get("/",ventaController.findAll)
 
 module.exports = router

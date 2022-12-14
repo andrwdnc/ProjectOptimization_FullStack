@@ -1,7 +1,7 @@
-import { getAllProducts } from "../controllers/user.controller";
+const usersController = require("../controllers/user.controller")
 const express = require("express")
 const router = express.Router()
 
-router.get("/users",getAllProducts)
+router.get("/",usersController.findAll)
 
 module.exports = router
