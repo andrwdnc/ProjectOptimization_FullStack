@@ -84,4 +84,4 @@ User.delete = async function(id,result){
 }
 
 
-module.exports = Employee
+module.exports = User

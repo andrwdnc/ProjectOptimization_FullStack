@@ -5,7 +5,7 @@ const dbConn = mysql.createConnection({
     host:"localhost",
     user:"root",
     password:"",
-    database:"db_company" //Cuando este creada la base de datos cambiarla por el nombre que toca
+    database:"tienda_bd"
 })
 
 //Si no establece la conexión, tumbará el servidor
