@@ -1,59 +1,59 @@
 const Venta = require("../models/venta.model")
-//NECESARIO CAMBIAR LO DEMAS
+
 exports.findAll = async function(req,res){
-    await Venta.findAll(function(err,employees){
+    await Venta.findAll(function(err,ventas){
         if(err){
             res.send(err)
         }else{
-            res.send(employees)            
+            res.send(ventas)            
         }   
     })
 }
 
 exports.findById = async function(req,res){
     const { id } = req.params
-    await Employee.findById(id,function(err,employee){
+    await Venta.findById(id,function(err,ventas){
         if(err){
             res.send(err)
         }else{            
-            res.send(employee)            
+            res.send(ventas)            
         } 
     })
 }
 
 exports.create = async function(req,res){
-    const newEmployee = new Employee(req.body)
-    await Employee.create(newEmployee,function(err,employee){
+    const newVenta = new Venta(req.body)
+    await Venta.create(newVenta,function(err,venta){
         if(err){
             res.send(err)
         }else{
-            console.log(employee)
-            res.send(employee)            
+            console.log(venta)
+            res.send(venta)            
         } 
     })
 }
 
 exports.update = async function(req,res){
-    const employee = new Employee(req.body)
+    const venta = new Venta(req.body)
     const { id } = req.params
-    await Employee.update(id,employee,function(err,employee_updated){
+    await Venta.update(id,venta,function(err,venta_updated){
         if(err){
             res.send(err)
         }else{
-            console.log(employee_updated)
-            res.send(employee_updated)            
+            console.log(venta_updated)
+            res.send(venta_updated)            
         } 
     })
 }
 
 exports.delete = async function(req,res){
     const { id } = req.params
-    Employee.delete(id,function(err,employee_deleted){
+    Venta.delete(id,function(err,venta_deleted){
         if(err){
             res.send(err)
         }else{
-            console.log(employee_deleted)
-            res.send(employee_deleted)            
+            console.log(venta_deleted)
+            res.send(venta_deleted)            
         }
     })
 }
