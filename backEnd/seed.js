@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Products = require("./models/products.js");
+const Products = require("./models/products.model.js");
 
 mongoose
   .connect("mongodb://127.0.0.1:27017/products_ASJ")
