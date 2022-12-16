@@ -11,6 +11,7 @@ const mongoose = require("mongoose")
 const dbConnMySQL = require("./config/db.config")
 const cors = require("cors")
 app.use(cors())
+mongoose.set('strictQuery', false);
 
 ///////////////////////////////////
 
