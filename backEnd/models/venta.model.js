@@ -1,22 +1,15 @@
 const { isModuleNamespaceObject } = require("util/types")
-const dbConn = require("../config/db.config") //module.exports = dbConn
-//dbConn.conectar()
+const dbConn = require("../config/db.config") 
+
 
 let Venta = function(venta){
     
-    // this.first_name = employee.first_name,
-    // this.last_name = employee.last_name,
-    // this.email = employee.email,
-    // this.phone = employee.phone,
-    // this.organization = employee.organization,
-    // this.designation = employee.designation,
-    // this.salary = employee.salary,
-    // this.state = employee.state,
-    // this.create_at = new Date()
+    this.nif_usuario = venta.nif_usuario,
+    this.factura = venta.factura
 }
 
 Venta.findAll = async function(result){
-    //if(dbConn.state=="connected"){
+    
         const sql = "select * from ventas"
         dbConn.query(sql, function(err,res){
             if(err){
@@ -26,14 +19,11 @@ Venta.findAll = async function(result){
                 result(null,res)
             }        
         })
-    /*}else{
-        console.log("Not connected to MySQL")
-        result(null,null)
-    }*/
+
 }
 
 Venta.findById = async function(id,result){
-    const sql = "select * from ventas where id = ?"
+    const sql = "select * from ventas where idventas = ?"
     dbConn.query(sql,id,function(err,res){
         if(err){
             console.log(err)
@@ -53,14 +43,13 @@ Venta.create = async function(newVenta,result){
         }else{
             console.log(res)
             const idInserted = res.insertId
-            result(null,{idInserted}) //Devolvemos el ID nuevo insertado auto-incremental
+            result(null,{idInserted})
         }
     })
 }
 
 Venta.update = async function(id,venta,result){
-    //const sql = "UPDATE employees SET first_name=?, last_name=?, email=?, phone=?, organization=?, designation=?, salary=?, state=? WHERE ID=?"
-    const sql = "UPDATE ventas SET ? WHERE ID=?"
+    const sql = "UPDATE ventas SET nif_usuario=?, factura=?  WHERE idventas=?"
     dbConn.query(sql,[venta,id],function(err,res){
         if(err){
             console.log(err)
@@ -73,7 +62,7 @@ Venta.update = async function(id,venta,result){
 
 
 Venta.delete = async function(id,result){
-    const sql = "DELETE FROM ventas WHERE id=?"
+    const sql = "DELETE FROM ventas WHERE idventas=?"
     dbConn.query(sql,id,function(err,res){
         if(err){
             console.log(err)
