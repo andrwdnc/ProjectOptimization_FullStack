@@ -11,6 +11,7 @@ const mongoose = require("mongoose")
 const dbConnMySQL = require("./config/db.config")
 const cors = require("cors")
 app.use(cors())
+mongoose.set('strictQuery', false);
 
 ///////////////////////////////////
 
@@ -26,8 +27,8 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
 //Insertar rutas
-//app.use(`/api/${version}/venta`, ventaRoutes) 
-//app.use(`/api/${version}/users`, userRoutes)
+app.use(`/api/${version}/venta`, ventaRoutes) 
+app.use(`/api/${version}/users`, userRoutes)
 app.use(`/api/${version}/product`, productRoutes)
 
 
@@ -35,7 +36,7 @@ app.use(`/api/${version}/product`, productRoutes)
 app.listen(port,async ()=>{
     console.log(`Escuchando en puerto ${port}`)
     //Después de levantar el servidor, conectar con la BD MySQL
-    //dbConnMySQL.establishConexion()    
+    dbConnMySQL.establishConexion()    
     try {
         await conectarMongoDB()
           .then(() => {
@@ -48,4 +49,5 @@ app.listen(port,async ()=>{
       } catch (err) {
         process.exit(0);
       }
+
 })
