@@ -1,52 +1,6 @@
 document.addEventListener("DOMContentLoaded", ()=>{
     //Productos de la tienda
-    const productos = [
-        {
-            id: 1,
-            nombre: "Teclado",
-            precio: 60,
-            imagen: "teclado.jpg",
-            tipo: "Teclado",
-            especificaciones: {
-                switch: "azul",
-                tipo: "60%"
-            }
-        },
-        {
-            id: 2,
-            nombre: "Raton",
-            precio: 40,
-            imagen: "raton.jpg",
-            tipo: "Raton",
-            especificaciones: {
-                dpi: "3600",
-                color: "blanco"
-            }
-        },
-        {
-            id: 3,
-            nombre: "Monitor",
-            precio: 230,
-            imagen: "monitor.jpg",
-            tipo: "monitor",
-            especificaciones: {
-                resolucion: "1080p",
-                pulgadas: "49"
-            }
-        },
-        {
-            id: 4,
-            nombre: "Monitor",
-            precio: 230,
-            imagen: "monitor.jpg",
-            tipo: "monitor",
-            especificaciones: {
-                resolucion: "1080p",
-                pulgadas: "27"
-            }
-        }
-        
-    ]
+
 
     
     let carrito = []    //Carrito de la compra
@@ -60,7 +14,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     //Funcion que crea los card de los productos de la tienda
     function mostrarProductos(){
         //Por cada producto que hay se crea un elemento distinto
-        productos.forEach(producto =>{
+        products.forEach(producto =>{
             const div = document.createElement("div")
             div.classList.add("card", "col-sm-4")
 
@@ -69,20 +23,20 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
             const cardTitle = document.createElement("h4")
             cardTitle.classList.add("card-title")
-            cardTitle.textContent = producto.nombre
+            cardTitle.textContent = producto.name
 
             const cardImage = document.createElement("img")
             cardImage.classList.add("img-fluid")
-            cardImage.setAttribute("src", "assets/img/"+producto.imagen)
+            cardImage.setAttribute("src", "assets/img/"+producto.img)
 
             const cardPrecio = document.createElement("p")
             cardPrecio.classList.add("card-text")
-            cardPrecio.textContent = `${producto.precio}${divisa}`
+            cardPrecio.textContent = `${producto.price}${divisa}`
 
             const cardBoton = document.createElement("button")
             cardBoton.classList.add("btn", "btn-primary")
             cardBoton.textContent = "Añadir al carrito"
-            cardBoton.setAttribute("marcador", producto.id)
+            cardBoton.setAttribute("marcador", producto._id)
             cardBoton.addEventListener("click", anyadirProductoalCarrito)
 
             cardBody.appendChild(cardImage)
