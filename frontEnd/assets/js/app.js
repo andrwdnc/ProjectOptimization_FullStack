@@ -7,7 +7,6 @@ const config = {
     }
 }
 
-let product
 
 async function fetchData(){
     const response = await fetch(url,config)
@@ -26,7 +25,7 @@ async function fetchData(){
 
         for(let product of products){
             const div = document.createElement("div")
-            div.classList.add("card", "col-sm-4")
+            div.classList.add("card", "col-3")
 
             const cardBody = document.createElement("div")
             cardBody.classList.add("card-body")
@@ -61,7 +60,7 @@ async function fetchData(){
             renderizarCarrito()
             guardarCarritoEnLocalStorage()
         }
-
+        
         function renderizarCarrito(){
             carritoDom.textContent = ''
             
@@ -73,21 +72,44 @@ async function fetchData(){
                     return itemProductos._id === p
                 })
                 const numUnidades = carrito.reduce((total, itemId)=>{
+                    
                     return itemId === p ? total += 1 : total
                 },0)
+
+                const parrafo = document.createElement("p")
+                parrafo.textContent = `${numUnidades} x ${miItem[0].name}`
                 
+
+                const h5 = document.createElement("h5")
+                h5.textContent = `${miItem[0].price}${divisa}`
+
+                const row = document.createElement("div")
+                row.classList.add("row")
+            
                 const li = document.createElement("li")
                 li.classList.add("list-group-item", "text-right", "mx-2")
-                li.textContent = `${numUnidades} x ${miItem[0].name} - ${miItem[0].price}${divisa}`
+                
+                const div = document.createElement("div")
+                div.classList.add("col-8")
+                
+                const reducir = document.createElement("button")
+                reducir.classList.add("boton-carrito","col-2","btn", "btn-danger")
+                reducir.textContent= "-"
+                reducir.dataset.item = p
+                reducir.addEventListener("click", reducirCarrito)
                 
                 const botonBorrar = document.createElement("button")
-                botonBorrar.classList.add("btn", "btn-danger", "mx-5")
+                botonBorrar.classList.add("boton-carrito","col-2","btn", "btn-danger")
                 botonBorrar.textContent = "X"
-                botonBorrar.style.marginLeft = "1rem"
                 botonBorrar.dataset.item = p
                 botonBorrar.addEventListener("click", borrarItemCarrito)
-    
-                li.appendChild(botonBorrar)
+
+                div.appendChild(parrafo)
+                div.appendChild(h5)
+                row.appendChild(div)
+                row.appendChild(botonBorrar)
+                row.appendChild(reducir)
+                li.appendChild(row)
                 carritoDom.appendChild(li)
             })
             total.textContent = calcularTotal()
@@ -99,6 +121,21 @@ async function fetchData(){
                 return carritoId !== id
             })
             renderizarCarrito()
+            guardarCarritoEnLocalStorage()
+        }
+
+        function reducirCarrito(p){
+            const id = p.target.dataset.item
+            for(var i = carrito.length -1; i>=0; i--){
+                if(carrito[i] === id){
+                    carrito.splice(i, 1)
+                    break
+                }
+            }
+            
+            console.log(carrito)
+            renderizarCarrito()
+            guardarCarritoEnLocalStorage()
         }
     
         function calcularTotal(){
@@ -136,5 +173,6 @@ async function fetchData(){
     .catch((err)=>console.log(err))
 
 }
+
 
 fetchData()
