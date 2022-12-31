@@ -36,7 +36,7 @@ app.use(`/api/${version}/product`, productRoutes)
 app.listen(port,async ()=>{
     console.log(`Escuchando en puerto ${port}`)
     //Después de levantar el servidor, conectar con la BD MySQL
-    //dbConnMySQL.establishConexion()    
+    dbConnMySQL.establishConexion()    
     try {
         await conectarMongoDB()
           .then(() => {
