@@ -3,7 +3,6 @@ const dbConn = require("../config/db.config")
 
 
 let Venta = function(venta){
-    
     this.nif_usuario = venta.nif_usuario,
     this.factura = venta.factura
 }

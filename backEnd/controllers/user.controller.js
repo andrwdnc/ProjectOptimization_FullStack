@@ -48,7 +48,7 @@ exports.update = async function(req,res){
 
 exports.delete = async function(req,res){
     const { id } = req.params
-    Venta.delete(id,function(err,venta_deleted){
+    await User.delete(id,function(err,venta_deleted){
         if(err){
             res.send(err)
         }else{

@@ -21,7 +21,7 @@ User.findAll = async function(result){
 }
 
 User.findById = async function(id,result){
-    const sql = "select * from users where id = ?"
+    const sql = "select * from users where nif = ?"
     dbConn.query(sql,id,function(err,res){
         if(err){
             console.log(err)
@@ -40,15 +40,13 @@ User.create = async function(newUser,result){
             result(err,null)
         }else{
             console.log(res)
-            const idInserted = res.insertId
-            result(null,{idInserted}) //Devolvemos el ID nuevo insertado auto-incremental
+            result(null,res)
         }
     })
 }
 
 User.update = async function(id,user,result){
-    //const sql = "UPDATE employees SET first_name=?, last_name=?, email=?, phone=?, organization=?, designation=?, salary=?, state=? WHERE ID=?"
-    const sql = "UPDATE users SET ? WHERE ID=?"
+    const sql = "UPDATE users SET ? WHERE nif=?"
     dbConn.query(sql,[user,id],function(err,res){
         if(err){
             console.log(err)
@@ -61,7 +59,7 @@ User.update = async function(id,user,result){
 
 
 User.delete = async function(id,result){
-    const sql = "DELETE FROM users WHERE id=?"
+    const sql = "DELETE FROM users WHERE nif=?"
     dbConn.query(sql,id,function(err,res){
         if(err){
             console.log(err)
