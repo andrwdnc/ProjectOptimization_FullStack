@@ -49,7 +49,7 @@ Venta.create = async function(newVenta,result){
 }
 
 Venta.update = async function(id,venta,result){
-    const sql = "UPDATE ventas SET nif_usuario=?, factura=?  WHERE idventas=?"
+    const sql = "UPDATE ventas SET ?  WHERE idventas=?"
     dbConn.query(sql,[venta,id],function(err,res){
         if(err){
             console.log(err)
