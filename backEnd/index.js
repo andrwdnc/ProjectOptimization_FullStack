@@ -21,6 +21,12 @@ async function conectarMongoDB() {
   return mongoose.connect("mongodb://127.0.0.1:27017/products_ASJ");
 }
 
+let yo = 0
+while (yo<10){
+  yo++
+  //testeo de git
+}
+
 
 //Aceptar BODY en peticiones POST usando JSON
 app.use(express.urlencoded({extended:true}))
